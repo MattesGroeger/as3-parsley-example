@@ -24,6 +24,9 @@
 			<s:TextInput id="password" displayAsPassword="true"/>
 		</mx:FormItem>
 		<mx:FormItem>
+			<mx:Label text="Hint: admin / test" color="#666666"/>
+		</mx:FormItem>
+		<mx:FormItem>
 			<s:Button label="Login" click="mainMediator.handleSubmitClick()"/>
 		</mx:FormItem>
 	</mx:Form>

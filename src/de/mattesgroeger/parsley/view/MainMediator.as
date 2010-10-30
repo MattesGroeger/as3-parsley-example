@@ -58,6 +58,9 @@ package de.mattesgroeger.parsley.view
 			sessionId = message.sessionId;
 			
 			enableApplication();
+
+			mainView.loginView.userName.text = "";
+			mainView.loginView.password.text = "";
 			
 			mainView.applicationView.result.text = "Session: " + message.sessionId;
 			mainView.viewStack.selectedIndex = 1;
