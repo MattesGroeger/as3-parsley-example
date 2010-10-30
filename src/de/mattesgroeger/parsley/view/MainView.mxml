@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:s="library://ns.adobe.com/flex/spark"
+          xmlns:mx="library://ns.adobe.com/flex/mx"
+          xmlns:view="de.mattesgroeger.parsley.view.*"
+          xmlns:parsley="http://www.spicefactory.org/parsley">
+	
+	<fx:Declarations>
+		<parsley:Configure/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			[Inject]
+			public var mainMediator:MainMediator;
+		]]>
+	</fx:Script>
+
+	<s:Button id="logoutButton" label="Logout" visible="false" click="mainMediator.handleLogoutClick()"/>
+	
+	<mx:ViewStack id="viewStack" creationPolicy="all">
+		<s:NavigatorContent>
+			<view:LoginView id="loginView"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent>
+			<view:ResultView id="applicationView"/>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+</s:VGroup>

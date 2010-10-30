@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:view="de.mattesgroeger.parsley.view.*"
+               xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="handleCreationComplete()"
+               width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import de.mattesgroeger.parsley.message.LogoutRequest;
+			import de.mattesgroeger.parsley.controller.LogoutCommand;
+			import de.mattesgroeger.parsley.context.MainConfig;
+			import de.mattesgroeger.parsley.controller.LoginCommand;
+			import de.mattesgroeger.parsley.core.CommandMap;
+			import de.mattesgroeger.parsley.message.LoginRequest;
+			import de.mattesgroeger.parsley.service.fake.ServiceRequestCommandFactory;
+
+			import org.spicefactory.cinnamon.service.ServiceRequest;
+			import org.spicefactory.parsley.asconfig.ActionScriptConfig;
+			import org.spicefactory.parsley.core.factory.MessageSettings;
+			import org.spicefactory.parsley.core.factory.impl.GlobalFactoryRegistry;
+			import org.spicefactory.parsley.dsl.context.ContextBuilder;
+			
+			private function handleCreationComplete() : void
+			{
+				registerCommandFactory();
+				buildContext();
+			}
+			
+			/**
+			 * Dummy command implementation, only necessary for simulating an async service call.
+			 * @see http://www.spicefactory.org/parsley/docs/2.3/manual/extensions.php#commands
+			 */
+			private function registerCommandFactory() : void
+			{
+				var settings:MessageSettings = GlobalFactoryRegistry.instance.messageSettings;
+				settings.commandFactories.addCommandFactory(ServiceRequest, new ServiceRequestCommandFactory());
+			}
+
+			private function buildContext() : void
+			{
+				var contextBuilder:ContextBuilder = ContextBuilder.newSetup()
+    				.viewRoot(this)
+				    .newBuilder();
+
+				var commandMap:CommandMap = new CommandMap(contextBuilder);
+				commandMap.register(LoginCommand, LoginRequest);
+				commandMap.register(LogoutCommand, LogoutRequest);
+				
+				contextBuilder.config(ActionScriptConfig.forClass(MainConfig));
+				contextBuilder.build();
+			}
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle" paddingBottom="50"/>
+	</s:layout>
+
+	<view:MainView/>
+
+</s:Application>
