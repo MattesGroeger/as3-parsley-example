@@ -3,7 +3,7 @@
                xmlns:s="library://ns.adobe.com/flex/spark"
                xmlns:view="de.mattesgroeger.parsley.view.*"
                xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="handleCreationComplete()"
-               width="100%" height="100%">
+               width="100%" height="100%" backgroundColor="#cccccc">
 	<fx:Script>
 		<![CDATA[
 			import de.mattesgroeger.parsley.message.LogoutRequest;
@@ -55,7 +55,7 @@
 	<s:layout>
 		<s:HorizontalLayout horizontalAlign="center" verticalAlign="middle" paddingBottom="50"/>
 	</s:layout>
-
+	
 	<view:MainView/>
 
 </s:Application>
